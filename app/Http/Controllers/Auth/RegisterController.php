@@ -71,7 +71,7 @@ class RegisterController extends Controller
         ]);
         $user->profile()->create([
             'fullname' => $data['name'],
-        return $user;
         ]);
+        return $user;
     }
 }
