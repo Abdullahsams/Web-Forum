@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html, body {
+    background-color: #ffcf10;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+}
+.fa-search {
+    margin-right: -30px;
+}
+.btn-outline-primary:hover {
+    color: white !important;
+}       
+form .form-control {
+    width: 500px !important;
+    margin-right: 100px !important;
+}
+.deks {
+    margin-top: 20px;
+    color: rgba(0,0,0,.7);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.joinus {
+    background: #ff5722;
+    letter-spacing: 1px;
+    transition: .3s background ease;
+}
+.joinus:hover {
+    background: #dd2c00;
+}
+@media (max-width: 767px) { 
+    .searchbar {
+        margin-bottom: 10px;
+    }
+    .buttons {
+        margin-bottom: 10px;
+    } 
+    form .form-control {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+    .title {
+        font-size: 30px;
+    }
+ }
