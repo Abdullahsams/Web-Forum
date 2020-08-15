@@ -9,13 +9,23 @@ use Auth;
 class PostsController extends Controller
 {
     Public function __construct() {
-        //$this->middleware('auth')->only(['create','store','edit','update','destroy']);
-        $this->middleware('auth');
+        $this->middleware('auth')->only(['create','store','edit','update','destroy']);
     }  
 
     public function index()
     {
-        $list = Auth::user()->posts;
+        $list = Post::all();
+        return view('posts.index',compact('list'));   
+    }
+
+    public function myPost()
+    {
+        if (Auth::check()) {
+            $list = Auth::user()->posts;
+        }
+        else {
+            $list = Post::all();
+        }
         return view('posts.index',compact('list'));   
     }
 
@@ -77,4 +87,10 @@ class PostsController extends Controller
         $list = Post::where('id',$id)->delete();
         return redirect('/posts')->with('sukses','Pertanyaan berhasil dihapus !');
     }
+
+    public function logout () {        
+        Auth::logout();
+        return  redirect('/posts');
+    }
+
 }

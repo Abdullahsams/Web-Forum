@@ -15,13 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/posts/logout','PostsController@logout');
+Route::get('/posts/mypost','PostsController@myPost');
+Route::put('/comment/{post_id}','CommentController@create');
 Route::resource('posts','PostsController');
 Auth::routes();
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
