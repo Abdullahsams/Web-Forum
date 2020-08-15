@@ -16,15 +16,21 @@ Route::get('/', function () {
 });
 
 Route::resource('posts','PostsController');
-Auth::routes();
+
+Route::group(['namespace' => 'Posts'], function () {
+    Route::get('allPosts/index', 'PostsController@index')->name('allPosts.index');
+    Route::get('allPosts/show/{id}',  'PostsController@show');
+    Route::post('allPosts/store',  'PostsController@store')->name('answer.post');
+    Route::post('allPosts/updateLike/{id}',  'PostsController@updateLike');
+    Route::post('allPosts/updateVote/{id}',  'PostsController@updateVote');
+    
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
