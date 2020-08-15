@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\comment_post;
-use App\comment_answer;
+use App\Comment_Post;
+use App\Comment_Answer;
 use App\Post;
 use App\Answer;
 use Auth;
