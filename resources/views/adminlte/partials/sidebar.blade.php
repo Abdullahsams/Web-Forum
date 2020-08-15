@@ -28,7 +28,7 @@
             <a href="#" class="nav-link">
               <h5> 
                 <i class="nav-icon fas fa-hand-sparkles"></i> Partisipasi
-                <span class="badge badge-info right"> {{Auth::user()->profiles->point}} </span>
+                <span class="badge badge-info right"> {{Auth::user()->profile->point}} </span>
               </h5>             
             </a>
           </li>
