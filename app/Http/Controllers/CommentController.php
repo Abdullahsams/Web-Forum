@@ -17,17 +17,19 @@ class CommentController extends Controller
 
     public function create(Request $request, $id)
     {        
+      if(Auth::check()){
         $list = Comment_Post::create([
             'body' => $request['body'],
             'user_id' => Auth::id(),
             'post_id' => $id
         ]);
         return redirect("/posts/{$id}"); 
-
+      }
     }
 
     public function createAnswer(Request $request, $id)
     {        
+      if(Auth::check()){
         $list = Comment_Answer::create([
             'body' => $request['body'],
             'user_id' => Auth::id(),
@@ -37,5 +39,6 @@ class CommentController extends Controller
         $ans = Answer::find($id);
         $post_id = $ans->post_id;
         return redirect("/posts/{$post_id}"); 
+      }
     }
 }
