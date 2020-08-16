@@ -15,7 +15,7 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('isi',255);
+            $table->text('isi');
             $table->integer('like');
             $table->integer('dislike');
             $table->integer('vote');
