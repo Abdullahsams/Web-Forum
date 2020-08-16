@@ -230,7 +230,7 @@
 
 
             @empty
-                <p> belum ada jawaban </p>
+                <p style="word-break:break-all;"> belum ada jawaban </p>
             @endforelse
 
         </div>
