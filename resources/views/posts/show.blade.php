@@ -52,7 +52,7 @@
 
                 <div class='col col-sm-11'>
                     <div class='row'>
-                        <p> {!!$list->body!!}  </p>
+                        <p style="word-break:break-all;"> {!!$list->body!!}  </p>
                     </div>
                
                     <div class='row'>
@@ -91,7 +91,7 @@
                     @forelse($list->comment as $comment)                       
                         <div class='row'>
                             <li>
-                                <p> {{$comment->body}} ,
+                                <p style="word-break:break-all;"> {{$comment->body}} ,
                                     <span style="color:blue"> {{$comment->author->name}} </span> ,
                                     {{$comment->created_at}}
                                 <p>
@@ -212,7 +212,7 @@
                     @forelse($answ->comment as $comment)                       
                         <div class='row'>
                             <li>
-                                <p> {{$comment->body}} ,
+                                <p style="word-break:break-all;"> {{$comment->body}} ,
                                     <span style="color:blue"> {{$comment->author->name}} </span> ,
                                     {{$comment->created_at}}
                                 <p>
