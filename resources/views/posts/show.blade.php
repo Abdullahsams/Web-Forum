@@ -51,7 +51,7 @@
                 </div>
 
                 <div class='col col-sm-11'>
-                    <div class='row'>
+                    <div class='row' style="word-break:break-all;">
                         <p style="word-break:break-all;"> {!!$list->body!!}  </p>
                     </div>
                
@@ -210,7 +210,7 @@
 
                     <ul class = 'mt-2'>
                     @forelse($answ->comment as $comment)                       
-                        <div class='row'>
+                        <div class='row' style="word-break:break-all;">
                             <li>
                                 <p style="word-break:break-all;"> {{$comment->body}} ,
                                     <span style="color:blue"> {{$comment->author->name}} </span> ,
