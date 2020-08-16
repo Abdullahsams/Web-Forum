@@ -7,37 +7,47 @@ use Auth;
 use App\Answer;
 use App\Vote_Answer;
 use App\Profile;
+use Auth;
 
 class AnswerController extends Controller
 {
+  
+    public function __construct(){
+      $this->middleware('auth');
+    }
+    
     public function create(Request $request, $id)
-    {                 
-       
-        $list = Answer::create([
-            'isi' => " ",
-            'user_id' => Auth::id(),
-            'post_id' => $id,
-            'like'=> 0,
-            'dislike' =>0, 
-            'vote' => 0,
-            'correct' => 0
+    {
+      if(Auth::guest()){
+        return redirect("/login");
+      } else {
+        $list = Answer::create([       
+          'isi' => " ",
+          'user_id' => Auth::id(),
+          'post_id' => $id,
+          'like'=> 0,
+          'dislike' =>0, 
+          'vote' => 0,
+          'correct' => 0
         ]);
 
         return view('/answer/create',compact('list'));
+      }
     }
 
-   
     public function update(Request $request, $id)
     {
-        
+      if(Auth::guest()){
+         return redirect("/login");
+      } else {
         $query = Answer::where('id',$id)->update([
-                        'isi' => $request['isi']
+          'isi' => $request['isi']
         ]);
 
         $list = Answer::find($id);        
         $post_id = $list->post_id;
-        return redirect("/posts/{$post_id}");  
-        
+        return redirect("/posts/{$post_id}");
+      }
     }
     
     public function AnswerupVote($id)
@@ -45,7 +55,7 @@ class AnswerController extends Controller
         try {
             $answer = Answer::find($id);
             $user_id = $answer->user_id;    
-            $userlogin = Auth::user()->profiles->id;
+            $userlogin = Auth::user()->profile->id;
 
             // hanya bisa melakukan vote untuk user lain
             if ($user_id <> $userlogin) {
@@ -96,7 +106,7 @@ class AnswerController extends Controller
     public function AnswerdownVote($id)
     {
         try {
-            $user_point = Auth::user()->profiles->point;
+            $user_point = Auth::user()->profile->point;
 
             if ( $user_point >= 15 ) {
                 $answer = Answer::find($id);
@@ -104,7 +114,7 @@ class AnswerController extends Controller
                 $answer->save();
 
                 // kurang 1 poin dari user akrif
-                $user_id = Auth::user()->profiles->id;
+                $user_id = Auth::user()->profile->id;
                 $profile = Profile::find($user_id);
                 $profile->point -= 1;
                 $profile->save();
