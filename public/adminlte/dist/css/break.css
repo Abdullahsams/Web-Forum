@@ -1,0 +1,4 @@
+
+.row a.text-primary p {
+       word-break: break-all;
+}
