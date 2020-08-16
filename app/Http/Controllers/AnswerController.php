@@ -7,7 +7,6 @@ use Auth;
 use App\Answer;
 use App\Vote_Answer;
 use App\Profile;
-use Auth;
 
 class AnswerController extends Controller
 {
