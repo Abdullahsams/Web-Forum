@@ -9,7 +9,7 @@
     @endif
 
   <div class = 'mt-3 ml-3'>
-    <div class="card" style="padding-right:25px;">
+    <div class="card">
         <div class="card-header">
             <div class = 'row'>
                 <div class = 'col col-sm-10'>
