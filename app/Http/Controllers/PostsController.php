@@ -113,7 +113,7 @@ class PostsController extends Controller
         try {
             $post = Post::find($id);
             $user_id = $post->user_id;    
-            $userlogin = Auth::user()->profiles->id;
+            $userlogin = Auth::user()->profile->id;
 
             // hanya bisa melakukan vote untuk user lain
             if ($user_id <> $userlogin) {
@@ -160,7 +160,7 @@ class PostsController extends Controller
     public function PostdownVote($id)
     {
         try {
-            $user_point = Auth::user()->profiles->point;
+            $user_point = Auth::user()->profile->point;
 
             if ( $user_point >= 15 ) {
                 $post = Post::find($id);
@@ -168,7 +168,7 @@ class PostsController extends Controller
                 $post->save();
 
                 // kurang 1 poin dari user akrif
-                $user_id = Auth::user()->profiles->id;
+                $user_id = Auth::user()->profile->id;
                 $profile = Profile::find($user_id);
                 $profile->point -= 1;
                 $profile->save();
@@ -231,7 +231,7 @@ class PostsController extends Controller
             $post_id = 2;
             $answer = Answer::find($id);
             $user_id = $answer->user_id;    
-            $userlogin = Auth::user()->profiles->id;
+            $userlogin = Auth::user()->profile->id;
 
             // hanya bisa melakukan vote untuk user lain
             if ($user_id <> $userlogin) {
