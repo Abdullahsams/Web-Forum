@@ -11,34 +11,39 @@ use Auth;
 
 class CommentController extends Controller
 {          
-    Public function __construct() {
+    public function __construct() {
         $this->middleware('auth');
     }  
 
     public function create(Request $request, $id)
-    {        
-      if(Auth::check()){
+    {
+      if(Auth::guest()){
+        return redirect("/login");
+      } else {
         $list = Comment_Post::create([
-            'body' => $request['body'],
-            'user_id' => Auth::id(),
-            'post_id' => $id
+          'body' => $request['body'],
+          'user_id' => Auth::id(),
+          'post_id' => $id
         ]);
         return redirect("/posts/{$id}"); 
       }
     }
-
+    
     public function createAnswer(Request $request, $id)
-    {        
-      if(Auth::check()){
+    {
+      if(Auth::guest()){
+        return redirect("/login");
+      } else {
         $list = Comment_Answer::create([
-            'body' => $request['body'],
-            'user_id' => Auth::id(),
-            'answer_id' => $id
+          'body' => $request['body'],
+          'user_id' => Auth::id(),
+          'answer_id' => $id
         ]);
 
-        $ans = Answer::find($id);
-        $post_id = $ans->post_id;
-        return redirect("/posts/{$post_id}"); 
-      }
+      $ans = Answer::find($id);
+      $post_id = $ans->post_id;
+      return redirect("/posts/{$post_id}"
+      ); 
     }
+  }
 }
